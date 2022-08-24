@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Annonces;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,10 +15,12 @@ class AnnoncesType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('photo')
+            ->add('photo', FileType::class, [
+                'required' => false,
+                'mapped' => false,
+            ])
             ->add('phone')
             ->add('postalCode')
-            ->add('date')
         ;
     }
 

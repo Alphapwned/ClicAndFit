@@ -18,6 +18,7 @@ class AnnoncesController extends AbstractController
     public function new(Request $request, AnnoncesRepository $annoncesRepository): Response
     {
         $annonce = new Annonces();
+        $annonce->setDate();
         $form = $this->createForm(AnnoncesType::class, $annonce);
         $form->handleRequest($request);
 
@@ -33,7 +34,7 @@ class AnnoncesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_annonces_show', methods: ['GET'])]
+    #[Route('/{id<^[0-9]+$>}', name: 'app_annonces_show', methods: ['GET'])]
     public function show(Annonces $annonce): Response
     {
         return $this->render('annonces/show.html.twig', [
@@ -41,7 +42,7 @@ class AnnoncesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_annonces_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id<^[0-9]+$>}/edit', name: 'app_annonces_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Annonces $annonce, AnnoncesRepository $annoncesRepository): Response
     {
         $form = $this->createForm(AnnoncesType::class, $annonce);
@@ -59,7 +60,7 @@ class AnnoncesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_annonces_delete', methods: ['POST'])]
+    #[Route('/{id<^[0-9]+$>}', name: 'app_annonces_delete', methods: ['POST'])]
     public function delete(Request $request, Annonces $annonce, AnnoncesRepository $annoncesRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$annonce->getId(), $request->request->get('_token'))) {
