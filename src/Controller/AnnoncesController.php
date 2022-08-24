@@ -13,13 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/annonces')]
 class AnnoncesController extends AbstractController
 {
-    #[Route('/', name: 'app_annonces_index', methods: ['GET'])]
-    public function index(AnnoncesRepository $annoncesRepository): Response
-    {
-        return $this->render('annonces/index.html.twig', [
-            'annonces' => $annoncesRepository->findAll(),
-        ]);
-    }
 
     #[Route('/new', name: 'app_annonces_new', methods: ['GET', 'POST'])]
     public function new(Request $request, AnnoncesRepository $annoncesRepository): Response
@@ -31,7 +24,7 @@ class AnnoncesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $annoncesRepository->add($annonce, true);
 
-            return $this->redirectToRoute('app_annonces_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_main', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('annonces/new.html.twig', [
@@ -57,7 +50,7 @@ class AnnoncesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $annoncesRepository->add($annonce, true);
 
-            return $this->redirectToRoute('app_annonces_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_main', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('annonces/edit.html.twig', [
@@ -73,6 +66,6 @@ class AnnoncesController extends AbstractController
             $annoncesRepository->remove($annonce, true);
         }
 
-        return $this->redirectToRoute('app_annonces_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_main', [], Response::HTTP_SEE_OTHER);
     }
 }
