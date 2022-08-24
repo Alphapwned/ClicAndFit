@@ -15,12 +15,13 @@ class AnnoncesType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('photo', FileType::class, [
+            ->add('phone')
+            ->add('zipcode')
+            ->add('images', FileType::class, [
                 'required' => false,
                 'mapped' => false,
+                'multiple' => true,
             ])
-            ->add('phone')
-            ->add('postalCode')
         ;
     }
 
