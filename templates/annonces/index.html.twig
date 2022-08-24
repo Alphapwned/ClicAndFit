@@ -11,8 +11,7 @@
                 <th>Titre</th>
                 <th>Description</th>
                 <th>Photo</th>
-                <th>Numéro de téléphone</th>
-                <th>Code postal</th>
+
                 <th>Date de parution</th>
             </tr>
         </thead>
@@ -22,8 +21,6 @@
                 <td>{{ annonce.title }}</td>
                 <td>{{ annonce.description }}</td>
                 <td>{{ annonce.photo }}</td>
-                <td>{{ annonce.phone }}</td>
-                <td>{{ annonce.postalCode }}</td>
                 <td>{{ annonce.date ? annonce.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('app_annonces_show', {'id': annonce.id}) }}">Détail</a>

@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\AnnoncesRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -21,17 +23,25 @@ class Annonces
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $photo = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $date = null;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="annonces",cascade={"persist"})
+     */
+    private Collection $images;
 
     #[ORM\Column(length: 10)]
     private ?string $phone = null;
 
     #[ORM\Column]
-    private ?int $postalCode = null;
+    private ?int $zipcode = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -62,14 +72,44 @@ class Annonces
         return $this;
     }
 
-    public function getPhoto(): ?string
+    public function getDate(): ?\DateTimeInterface
     {
-        return $this->photo;
+        return $this->date;
     }
 
-    public function setPhoto(?string $photo): self
+    public function setDate(): self
     {
-        $this->photo = $photo;
+        $this->date = new DateTime('now');
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Images[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Images $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setAnnonces($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getAnnonces() === $this) {
+                $image->setAnnonces(null);
+            }
+        }
 
         return $this;
     }
@@ -86,26 +126,14 @@ class Annonces
         return $this;
     }
 
-    public function getPostalCode(): ?int
+    public function getZipcode(): ?int
     {
-        return $this->postalCode;
+        return $this->zipcode;
     }
 
-    public function setPostalCode(int $postalCode): self
+    public function setZipcode(int $zipcode): self
     {
-        $this->postalCode = $postalCode;
-
-        return $this;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(): self
-    {
-        $this->date = new DateTime('now');
+        $this->zipcode = $zipcode;
 
         return $this;
     }
