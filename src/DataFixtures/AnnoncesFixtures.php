@@ -19,8 +19,8 @@ class AnnoncesFixtures extends Fixture
             $annonces->setTitle($faker->sentence(4));
             $annonces->setDescription($faker->paragraph(2));
             $annonces->setDate();
-            $annonces->setPhone($faker->randomNumber(10, true));
-            $annonces->setZipcode($faker->randomNumber(5, true));
+            $annonces->setPhone($faker->numberBetween(01, 9999));
+            $annonces->setZipcode($faker->numberBetween(01000, 99999));
 
             $manager->persist($annonces);
         }

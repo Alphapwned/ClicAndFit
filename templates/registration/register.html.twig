@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <h1 class="text-center">Inscription</h1>
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.name) }}
@@ -15,6 +15,6 @@
         }) }}
         {{ form_row(registrationForm.RGPDConsent) }}
 
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn btn-lg btn-primary">S'inscrire</button>
     {{ form_end(registrationForm) }}
 {% endblock %}
