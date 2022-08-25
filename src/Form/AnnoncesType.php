@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class AnnoncesType extends AbstractType
 {
@@ -17,11 +18,7 @@ class AnnoncesType extends AbstractType
             ->add('description')
             ->add('phone')
             ->add('zipcode')
-            ->add('images', FileType::class, [
-                'required' => false,
-                'mapped' => false,
-                'multiple' => true,
-            ])
+            ->add('imageFile', VichImageType::class)
         ;
     }
 
