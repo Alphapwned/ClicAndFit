@@ -3,32 +3,46 @@
 {% block title %}Annonces{% endblock %}
 
 {% block body %}
-    <h1>Annonces</h1>
+    <h1 class="text-center">Détail de l'annonce</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ annonce.id }}</td>
-            </tr>
-            <tr>
                 <th>Title</th>
                 <td>{{ annonce.title }}</td>
+            </tr>
+                        <tr>
+                <th>Image</th>
+                <td>
+                    <div style="width: 500px;">
+                        <img style="max-width: 500px;" src="{{ vich_uploader_asset(annonce, 'imageFile') }}">
+                    </div>
+                </td>
             </tr>
             <tr>
                 <th>Description</th>
                 <td>{{ annonce.description }}</td>
             </tr>
             <tr>
-                <th>Date</th>
+                <th>Numéro de téléphone</th>
+                <td>{{ annonce.phone }}</td>
+            </tr>
+            <tr>
+                <th>Code postal</th>
+                <td>{{ annonce.zipcode }}</td>
+            </tr>
+            <tr>
+                <th>Date de parution</th>
                 <td>{{ annonce.date ? annonce.date|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_main') }}">back to list</a>
+    <a href="{{ path('app_main') }}">Retour à l'accueil</a>
 
-    <a href="{{ path('app_annonces_edit', {'id': annonce.id}) }}">edit</a>
+    {% if app.user %}
+        <a href="{{ path('app_annonces_edit', {'id': annonce.id}) }}">Editer</a>
+        {{ include('annonces/_delete_form.html.twig') }}
+    {% endif %}
 
-    {{ include('annonces/_delete_form.html.twig') }}
 {% endblock %}

@@ -10,7 +10,8 @@
             <tr>
                 <th>Titre</th>
                 <th>Description</th>
-
+                <th>Numéro de téléphone</th>
+                <th>code postal</th>
                 <th>Date de parution</th>
             </tr>
         </thead>
@@ -19,9 +20,8 @@
             <tr>
                 <td>{{ annonce.title }}</td>
                 <td>{{ annonce.description }}</td>
-                
-
-
+                <td>{{ annonce.phone }}</td>
+                <td>{{ annonce.zipcode }}</td>
                 <td>{{ annonce.date ? annonce.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('app_annonces_show', {'id': annonce.id}) }}">Détail</a>
@@ -34,6 +34,10 @@
         {% endfor %}
         </tbody>
     </table>
+    <div>
+        {{ knp_pagination_render(annonces) }}
+        <p>Il y a actuellement {{ annonces.getTotalItemCount }} annonces sur le site.</p>
+    </div>
     {% if app.user %}
         <a href="{{ path('app_annonces_new') }}">Créer une nouvelle annonce</a>
     {% endif %}
