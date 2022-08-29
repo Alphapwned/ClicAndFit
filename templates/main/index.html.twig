@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <h1 class="my-5 text-center">Listes des annonces</h1>
+    <div class="paginator_annonce mb-2">
+        <div class="paginator">
+            <div class="paginator_nb_page">
+                <p>{{ knp_pagination_render(annonces) }}</p>
+            </div>
+            <p class="">Il y a actuellement {{ annonces.getTotalItemCount }} annonces sur le site.</p>
+        </div>
+        <div class="new_annonce">
+            {% if app.user %}
+                <a href="{{ path('app_annonces_new') }}"><button class="btn btn-lg btn-secondary">Créer une nouvelle annonce</button></a>
+            {% endif %}
+        </div>
+    </div>
+
+
+    {% for annonce in annonces %}
+        <a class="" href="{{ path('app_annonces_show', {'id': annonce.id}) }}">
+            <div class="annonce">
+                <div class="card_title">
+                    <h2 class="m-0 text-center align-self-center">{{ annonce.title }}</h2>
+                </div>
+                <div class="container_separator d-flex justify-content-center">
+                    <div class="separator"></div>
+                </div>
+                <div class="card_content">
+                    <div class="img">
+                        {% if annonce.imageName is not null %}
+                            <img class="card_img" src="{{ vich_uploader_asset(annonce, 'imageFile') }}">
+                        {% else %}
+                            <p class="card_no_img text-center">Pas d'image disponible pour cette annonce.</p>
+                        {% endif %}
+                    </div>
+                    <div class="card_text">
+                        <div class="card_description">
+                            <div class="description">
+                                <h3>Description :</h3>
+                                <p>{{ annonce.description |length > 300 ? annonce.description |slice(0, 300) ~ '...' : annonce.description  }}</p>
+                            </div>
+                        </div>
+                        <div class="card_personal_info">
+                            <h3>Informations sur l'annonce :</h3>
+                            <p>Téléphone : {{ annonce.phone }}</p>
+                            <p>Code postal : {{ annonce.zipcode }}</p>
+                            <p>Publiée le : {{ annonce.date ? annonce.date|date('Y-m-d H:i:s') : '' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+                        
+    {% else %}
+        <p>Il n'y a pas d'annonces à afficher</p>
+    {% endfor %}
+            
+    <div class="paginator mb-3">
+        <p>{{ knp_pagination_render(annonces) }}</p>
+    </div>
+
+
+
+{% endblock %}

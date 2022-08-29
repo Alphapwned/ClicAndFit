@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonces{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-center">
+        <div class="frame d-flex flex-column justify-content-center w-75">
+            <h2 class="text-center my-5">{{ annonce.title }}</h2>
+            <div class="show_img mb-4">
+                {% if annonce.imageName is not null %}
+                    <div class="show_img_frame w-75">
+                        <img src="{{ vich_uploader_asset(annonce, 'imageFile') }}">
+                    </div>
+                {% else %}
+                    <div class="show_img_frame w-75"
+                        <p class="show_no_img text-center">Pas d'image disponible pour cette annonce.</p>
+                    </div>
+                {% endif %}
+            </div>
+            <h3>Description :</h3>
+            <p class="show_description mb-4">{{ annonce.description  }}</p>
+            <h3>Informations sur l'annonce :</h3>
+            <div class="mb-4">
+                <div class="show_personal_info">
+                    <p class="w-50">Téléphone : {{ annonce.phone }}</p>
+                    <p class="w-50">Code postal : {{ annonce.zipcode }}</p>
+                    <p class="w-50">Publiée le : {{ annonce.date ? annonce.date|date('Y-m-d H:i:s') : '' }}</p>
+                </div> 
+            </div>               
+            <div class="show_button mb-3">
+                <a class="btn btn-lg btn-primary" href="{{ path('app_main') }}">Retour à l'accueil</a>
+
+                {% if app.user %}
+                    <a class="btn btn-lg btn-primary" href="{{ path('app_annonces_edit', {'id': annonce.id}) }}">Editer</a>
+                    {{ include('annonces/_delete_form.html.twig') }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

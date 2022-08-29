@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer une annonce{% endblock %}
+
+{% block body %}
+    <h1 class="text-center my-5">Editer l' annonce</h1>
+
+    <div class="d-flex justify-content-center w-100">
+        <div class="frame edit_btn w-50">
+            {{ include('annonces/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+        </div>
+    </div>
+
+    
+{% endblock %}
