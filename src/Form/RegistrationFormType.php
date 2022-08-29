@@ -20,7 +20,7 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('email', EmailType::Class, [
+        ->add('email', EmailType::class, [
             'attr' => [
                 'class' => 'form-control mb-3'
             ]

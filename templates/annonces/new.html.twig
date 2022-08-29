@@ -3,9 +3,12 @@
 {% block title %}Nouvelle annonce{% endblock %}
 
 {% block body %}
-    <h1 class="text-center">Créer une nouvelle annonce</h1>
+    <h1 class="text-center my-5">Créer une nouvelle annonce</h1>
 
-    {{ include('annonces/_form.html.twig') }}
+    <div class="d-flex justify-content-center w-100">
+        <div class="frame w-50">
+            {{ include('annonces/_form.html.twig') }}
+        </div>
+    </div>
 
-    <a href="{{ path('app_main') }}">Retour à l'accueil</a>
 {% endblock %}

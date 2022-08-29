@@ -1,3 +1,342 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: lightgray;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+a:hover{
+    color: black;
+}
+
+p{
+    margin: 0;
+    padding: 0;
+}
+
+.text_area{
+    height: 300px;
+}
+
+main{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.page{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h3{
+    font-size: 1.3em;
+}
+
+.frame {
+    border: 1px solid rgb(255, 123, 0);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.paginator_annonce{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.paginator, .new_annonce{
+    width: 50%;
+}
+
+.paginator{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.new_annonce{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.annonce {
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+    border: solid 1px rgb(255, 123, 0);
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.img{
+    width: 20%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(202, 202, 202);
+    border-radius: 10px;
+}
+
+
+.card_img{
+    padding: 0;
+    width: 500px;
+}
+
+.card_no_img{
+    background-color: rgb(202, 202, 202);
+    align-self: center;
+}
+
+.card_content{
+    width: 100%;
+    height: 65%;
+    display: flex;
+    flex-direction: row;
+}
+
+.card_title{
+    height: 30%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container_separator{
+    height: 5%;
+}
+
+.separator{
+    width: 70%;
+    height: 1px;
+    background-color: rgb(255, 123, 0);
+}
+
+.card_text{
+    width: 100%;
+    height: 65%;
+    padding-left: 30px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+}
+
+.card_description{
+    grid-column: 1 / 8;
+    width: 100%;
+    height: 100%;
+}
+
+.description, .description p{
+    width: 100%;
+    height: 100%;
+}
+
+.description p{
+    text-align: justify;
+}
+
+.card_personal_info{
+    grid-column: 8 / 11;
+    padding-left: 30px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Show page */
+
+.show_img{
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.show_img_frame{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(202, 202, 202);
+    border-radius: 10px;
+
+}
+
+.show_description{
+    text-align: justify;
+}
+
+.show_personal_info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.show_button{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.show_button .btn-primary{
+    width: 30%;
+}
+
+/* Edit page */
+
+.edit_btn .btn-primary{
+    width: 70%;
+}
+
+.vich-image img{
+    max-width: 100%;
+}
+
+
+@media screen and (max-width: 1610px) {
+    .page{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 1410px) {
+    .page{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 970px) {
+    .page{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 830px) {
+
+    .page{
+        width: 80%;
+    }
+
+    .page a, .page .paginator_annonce {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .paginator_annonce{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .paginator, .new_annonce{
+        width: 100%;
+    }
+    
+    .new_annonce{
+        justify-content: flex-start;
+    }
+
+    .annonce {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 600px;
+        margin-bottom: 30px;
+    }
+
+    .card_content{
+        width: 100%;
+        height: 65%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card_title{
+        height: 10%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+   .container_separator{
+    height: 2%;
+    }
+
+    .img{
+        width: 50%;
+        height: 40%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(202, 202, 202);
+        border-radius: 10px;
+    }
+
+    .card_text{
+        width: 100%;
+        height: 65%;
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .description{
+        padding: 15px 30px 0 30px;
+        width: 100%;
+    }
+    
+    .card_personal_info{
+        padding: 15px 30px 0 30px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width: 435px) {
+    .paginator, .new_annonce{
+        width: 100%;
+    }
+
+    .annonce{
+        width: 100%;
+    }
+
+    .img{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .page{
+        width: 100%;
+    }
 }
